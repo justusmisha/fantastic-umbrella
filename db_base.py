@@ -72,6 +72,7 @@ def get_query_db():
         select_query = "SELECT * FROM public.queries"
         cursor.execute(select_query)
         links = cursor.fetchall()
+        print(links)
         return links
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)

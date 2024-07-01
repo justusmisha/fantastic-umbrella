@@ -19,6 +19,7 @@ def authenticate(username, password):
 async def home():
     st.title("Авито Парсер")
     queries = get_query_db()
+    print('From home ' + queries)
     cities_data = pd.read_csv('cities.csv', header=None, names=['Russian', 'English'])
 
     for query in queries:
