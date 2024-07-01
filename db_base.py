@@ -126,3 +126,5 @@ def get_google_sheet_db(sheet_name):
         return [sheet[0] for sheet in sheets]
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)
+
+get_query_db()
