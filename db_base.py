@@ -5,7 +5,7 @@ from psycopg2 import sql
 
 def connect_db():
     return psycopg2.connect(
-        dbname="db_avito_parser",
+        dbname="postgres",
         user="postgres",
         password="postgres",
         host="localhost",
