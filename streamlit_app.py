@@ -104,7 +104,7 @@ async def google_sheets():
         google_sheet_url = f'https://docs.google.com/spreadsheets/d/{google_sheet}/edit?usp=sharing'
 
         if st.button("Открыть"):
-            webbrowser.open_new_tab(google_sheet_url)
+            st.success(google_sheet_url)
 
 
 async def profile_home():
