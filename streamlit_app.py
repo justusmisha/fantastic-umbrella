@@ -98,13 +98,14 @@ async def google_sheets():
                 st.error(f'Error: {e}')
         else:
             st.warning('Введите название!')
+    a = get_google_sheet_names_db()
+    if a:
+        google_sheet_name = st.selectbox('Выберите чтобы перейти:', a)
+        google_sheet = ''.join(get_google_sheet_db(google_sheet_name))
+        google_sheet_url = f'https://docs.google.com/spreadsheets/d/{google_sheet}/edit?usp=sharing'
 
-    google_sheet_name = st.selectbox('Выберите чтобы перейти:', get_google_sheet_names_db())
-    google_sheet = ''.join(get_google_sheet_db(google_sheet_name))
-    google_sheet_url = f'https://docs.google.com/spreadsheets/d/{google_sheet}/edit?usp=sharing'
-
-    if st.button("Открыть"):
-        webbrowser.open_new_tab(google_sheet_url)
+        if st.button("Открыть"):
+            webbrowser.open_new_tab(google_sheet_url)
 
 
 async def profile_home():
