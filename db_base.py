@@ -72,7 +72,6 @@ def get_query_db():
         select_query = "SELECT * FROM public.queries"
         cursor.execute(select_query)
         links = cursor.fetchall()
-        print(links)
         return links
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)
@@ -126,5 +125,3 @@ def get_google_sheet_db(sheet_name):
         return [sheet[0] for sheet in sheets]
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)
-
-get_query_db()
