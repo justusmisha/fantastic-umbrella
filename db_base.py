@@ -23,10 +23,6 @@ def save_links_db(url, query_id):
         print("URL saved successfully!")
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while saving URL:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
 
 
 def get_links_from_db(query_id):
@@ -39,10 +35,6 @@ def get_links_from_db(query_id):
         return links
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving links:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
 
 
 def save_query_db(query_name, url=None):
@@ -59,10 +51,6 @@ def save_query_db(query_name, url=None):
         print("Query saved successfully!")
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while saving URL:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
 
 
 def change_query_bool_db(query_url):
@@ -75,10 +63,6 @@ def change_query_bool_db(query_url):
         print("Query updated successfully!")
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while updating query:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
 
 
 def get_query_db():
@@ -91,11 +75,6 @@ def get_query_db():
         return links
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
-
 
 def delete_query_from_db(id):
     conn = None
@@ -109,10 +88,6 @@ def delete_query_from_db(id):
         print("Error while deleting query:", error)
         if conn is not None:
             conn.rollback()
-    finally:
-        if cursor is not None:
-            cursor.close()
-        if conn is not None:
             conn.close()
 
 
@@ -126,10 +101,6 @@ def save_google_sheet_db(sheet_name, sheet_id):
         print("Query saved successfully!")
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while saving URL:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
 
 
 def get_google_sheet_names_db():
@@ -142,10 +113,6 @@ def get_google_sheet_names_db():
         return [sheet[0] for sheet in sheets]
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
 
 
 def get_google_sheet_db(sheet_name):
@@ -158,7 +125,3 @@ def get_google_sheet_db(sheet_name):
         return [sheet[0] for sheet in sheets]
     except (Exception, psycopg2.DatabaseError) as error:
         print("Error while retrieving query:", error)
-    finally:
-        if conn is not None:
-            cursor.close()
-            conn.close()
