@@ -26,7 +26,7 @@ def main(sheet=None, google_sheet=None, query_id=None, link=None):
             links = get_links_from_db(query_id)
             print(links)
             for idx, link in enumerate(links, start=1):
-                parser = CardParser(url=link[1])
+                parser = CardParser(url=link[2])
                 profile_link = parser.get_profile_link()
                 downloader = Downloader(
                     title=parser.get_title(),
