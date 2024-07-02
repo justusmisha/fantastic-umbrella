@@ -117,6 +117,7 @@ async def profile_home():
         save_query_db(name, url=link_for_parsing)
         change_query_bool_db(link_for_parsing)
         queries = get_links_from_db(queries[0])
+        print(queries)
 
     for query in queries:
         if query[2]:
