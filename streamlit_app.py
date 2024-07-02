@@ -15,7 +15,7 @@ def authenticate(username, password):
     return username in valid_credentials and valid_credentials[username] == password
 
 
-async def home():
+def home():
     st.title("Авито Парсер")
     queries = get_query_db()
     cities_data = pd.read_csv('cities.csv', header=None, names=['Russian', 'English'])
@@ -57,7 +57,7 @@ async def home():
             st.warning("Запрос должен быть не пустым!")
 
 
-async def one_link():
+def one_link():
     st.title("Парсер по ссылке")
     url = st.text_input('Введите ссылку на объявление').strip()
     google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db())
@@ -79,7 +79,7 @@ async def one_link():
             st.warning("Запрос должен быть не пустым!")
 
 
-async def google_sheets():
+def google_sheets():
     st.title("Гугл документы")
     sheet_name = st.text_input('Введите название гугл документа').strip()
 
@@ -150,14 +150,14 @@ def profile_home():
                         st.success(f"Запрос '{query[1]}' удален успешно.")
 
 
-async def contacts():
+def contacts():
     st.title("Контакты")
     st.write("Почта для контактов: yustus.misha10@gmail.com")
     st.write("Тг: [https://t.me/justusmisha](https://t.me/justusmisha)")
     st.write("GitHub: [https://github.com/justusmisha](https://github.com/justusmisha)")
 
 
-async def main_page():
+def main_page():
     nav_items = {
         "Авито Парсер": home,
         "Гугл документы": google_sheets,
@@ -167,7 +167,7 @@ async def main_page():
     }
 
     selected_item = st.sidebar.radio("Navigation", list(nav_items.keys()))
-    await nav_items[selected_item]()
+    nav_items[selected_item]()
 
 
 if __name__ == "__main__":
@@ -189,4 +189,3 @@ if __name__ == "__main__":
                 st.error("Неверное имя пользователя или пароль. Пожалуйста, попробуйте снова.")
     if st.session_state.is_logged_in:
         main_page()
-        
