@@ -86,8 +86,8 @@ def create_new_sheet(query_name, spreadsheet_id, clear=True):
             title = s.get('properties', {}).get('title', '')
             if title == query_name:
                 sheet_exists = True
-                sheet = s  # Update sheet here
-                break
+                sheet = s
+                
     except HttpError as err:
         print(f"An error occurred while retrieving sheet metadata: {err}")
         return False
@@ -95,7 +95,7 @@ def create_new_sheet(query_name, spreadsheet_id, clear=True):
     if sheet_exists:
         print(f"A sheet with the name '{query_name}' already exists.")
         if clear:
-            if sheet is not None:  # Check if sheet is defined
+            if sheet is not None:
                 clear_request = {
                     'requests': [{
                         'updateCells': {
