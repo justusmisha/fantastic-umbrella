@@ -24,6 +24,7 @@ def main(sheet=None, google_sheet=None, query_id=None, link=None):
             downloader.export_to_google(google_sheet, range_start, "USER_ENTERED")
         else:
             links = get_links_from_db(query_id)
+            print(links)
             for idx, link in enumerate(links, start=1):
                 parser = CardParser(url=link[1])
                 profile_link = parser.get_profile_link()
