@@ -109,13 +109,14 @@ async def google_sheets():
 
 async def profile_home():
     st.title("Парсинг продавца")
-    queries = get_links_from_db(get_query_db()[0])
+    queries = get_query_db()
     link_for_parsing = st.text_input('Введите ссылку на продавца').strip()
 
     if st.button("Добавить продавца"):
         name = get_name_profile(browser_parser(link_for_parsing))
         save_query_db(name, url=link_for_parsing)
         change_query_bool_db(link_for_parsing)
+        queries = get_links_from_db(queries[0])
 
     for query in queries:
         if query[2]:
