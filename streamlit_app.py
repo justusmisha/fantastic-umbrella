@@ -131,8 +131,8 @@ def profile_home():
                     google_sheet = ''.join(google_sheet)
                     parse_links_by_query(token="2050db2769964ba9860cd984688191dc382c6a53db9", query_str=query[3],
                                          query_id=query[0], page_numbers=1)
-                    create_new_sheet(query[1], '1uZMjGpW5m4ZUM7fOrnCwFgi5ArNyLWRLMmjLtT7aMFg')
-                    main(query[1], '1uZMjGpW5m4ZUM7fOrnCwFgi5ArNyLWRLMmjLtT7aMFg', query_id=query[0])
+                    create_new_sheet(query[1], google_sheet)
+                    main(query[1], google_sheet, query_id=query[0])
                     end = time.time()
                     length = end - start
                     st.success(f"Поиск по '{query[1]}' завершен за {length:.2f} секунд!")

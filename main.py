@@ -13,7 +13,6 @@ def main(sheet=None, google_sheet=None, query_id=None, link=None):
             links = get_links_from_db(query_id)
             for idx, link in enumerate(links, start=1):
                 process_link(sheet, google_sheet, link[2], idx)
-                time.sleep(2)
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -39,4 +38,3 @@ def process_link(sheet, google_sheet, link, idx=None):
     except Exception as e:
         print(f"Failed to process link {link}: {e}")
 
-# Ensure you have appropriate memory management and logging
