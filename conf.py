@@ -1,6 +1,6 @@
-TOKEN = "865b5dfbe6214b1bb756dfbd667db8afa9fffa18336"
+TOKEN = "2050db2769964ba9860cd984688191dc382c6a53db9"
 
 valid_credentials = {
-    "username": "password",
+    "45.130.147.239": "v3Ly9i0HkToT7aZ",
     "1": "1"
 }
