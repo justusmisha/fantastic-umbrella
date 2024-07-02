@@ -38,6 +38,7 @@ async def home():
                     start = time.time()
                     google_sheet = get_google_sheet_db(google_sheet_name)
                     google_sheet = ''.join(google_sheet)
+                    print(query)
                     parse_links_by_query(TOKEN, query[1], query[0], pages, city=selected_city_english)
                     create_new_sheet(query[1], google_sheet)
                     main(query[1], google_sheet, query_id=query[0])

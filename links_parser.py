@@ -9,7 +9,6 @@ from db_base import save_links_db, get_links_from_db
 def parse_links_by_query(token, query_str, query_id, page_numbers, city=None):
     if city:
         for page_number in range(page_numbers, 0, -1):
-            print(page_number)
             query = query_str.split(' ')
             targetUrl = f"https://www.avito.ru/{city}?q={'+'.join(query)}&p={page_number}"
             encoded_url = urllib.parse.quote(targetUrl)
@@ -35,7 +34,6 @@ def parse_links_by_query(token, query_str, query_id, page_numbers, city=None):
 
     else:
         for page in range(page_numbers, 0, -1):
-            print(page)
             unique_links = set()
             targetUrl = query_str + f'&p={page}'
             encoded_url = urllib.parse.quote(targetUrl)
