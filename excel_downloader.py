@@ -71,6 +71,7 @@ class Downloader:
 
 
 def create_new_sheet(query_name, spreadsheet_id, clear=True):
+    print(query_name)
     creds = google_logger(SCOPES)
     service = build('sheets', 'v4', credentials=creds)
 
@@ -87,7 +88,7 @@ def create_new_sheet(query_name, spreadsheet_id, clear=True):
             if title == query_name:
                 sheet_exists = True
                 sheet = s
-                
+
     except HttpError as err:
         print(f"An error occurred while retrieving sheet metadata: {err}")
         return False
