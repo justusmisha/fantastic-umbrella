@@ -1,3 +1,5 @@
+import time
+
 from card_parser import CardParser
 from db_base import get_links_from_db
 from excel_downloader import Downloader
@@ -41,5 +43,6 @@ def main(sheet=None, google_sheet=None, query_id=None, link=None):
                 )
                 range_start = f"{sheet}!A{idx}:H{idx}"
                 downloader.export_to_google(google_sheet, range_start, "USER_ENTERED")
+                time.sleep(2)
     except Exception as e:
         print(f"An error occurred: {e}")

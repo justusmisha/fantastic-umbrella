@@ -63,6 +63,7 @@ class Downloader:
                 )
                 .execute()
             )
+            print(result)
             print(f"{(result.get('updates').get('updatedCells'))} cells appended.")
             return result
 
