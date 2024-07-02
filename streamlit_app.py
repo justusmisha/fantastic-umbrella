@@ -4,8 +4,8 @@ import streamlit as st
 
 from card_parser import browser_parser
 from conf import TOKEN, valid_credentials
-from db_base import *
-from excel_downloader import *
+from db_base import get_query_db, save_query_db, delete_query_from_db, change_query_bool_db
+from excel_downloader import create_new_sheet
 from links_parser import parse_links_by_query, get_name_profile
 from main import main
 
@@ -159,7 +159,6 @@ def main_page():
 
     selected_item = st.sidebar.radio("Navigation", list(nav_items.keys()))
     nav_items[selected_item]()
-
 
 
 st.set_page_config(page_title="Парсер", layout="wide")
