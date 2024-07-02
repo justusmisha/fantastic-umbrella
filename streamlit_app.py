@@ -1,4 +1,3 @@
-import asyncio
 import time
 import pandas as pd
 import streamlit as st
@@ -129,8 +128,8 @@ def profile_home():
                     start = time.time()
                     google_sheet = get_google_sheet_db(google_sheet_name)
                     google_sheet = ''.join(google_sheet)
-                    parse_links_by_query(token="2050db2769964ba9860cd984688191dc382c6a53db9", query_str=query[3],
-                                         query_id=query[0], page_numbers=1)
+                    parse_links_by_query(token=TOKEN, query_str=query[3],
+                                         query_id=query[0], page_numbers=pages)
                     create_new_sheet(query[1], google_sheet)
                     main(query[1], google_sheet, query_id=query[0])
                     end = time.time()
@@ -162,22 +161,22 @@ def main_page():
     nav_items[selected_item]()
 
 
-if __name__ == "__main__":
-    st.set_page_config(page_title="Парсер", layout="wide")
 
-    if "is_logged_in" not in st.session_state:
-        st.session_state.is_logged_in = False
+st.set_page_config(page_title="Парсер", layout="wide")
 
-    if not st.session_state.is_logged_in:
-        username = st.sidebar.text_input("Никнейм")
-        password = st.sidebar.text_input("Пароль", type="password")
-        login_button = st.sidebar.button("Зайти")
+if "is_logged_in" not in st.session_state:
+    st.session_state.is_logged_in = False
 
-        if login_button:
-            if authenticate(username, password):
-                st.session_state.is_logged_in = True
-                st.success("Вы вошли в систему!")
-            else:
-                st.error("Неверное имя пользователя или пароль. Пожалуйста, попробуйте снова.")
-    if st.session_state.is_logged_in:
-        main_page()
+if not st.session_state.is_logged_in:
+    username = st.sidebar.text_input("Никнейм")
+    password = st.sidebar.text_input("Пароль", type="password")
+    login_button = st.sidebar.button("Зайти")
+
+    if login_button:
+        if authenticate(username, password):
+            st.session_state.is_logged_in = True
+            st.success("Вы вошли в систему!")
+        else:
+            st.error("Неверное имя пользователя или пароль. Пожалуйста, попробуйте снова.")
+if st.session_state.is_logged_in:
+    main_page()
