@@ -125,7 +125,7 @@ def profile_home():
                 with column1:
                     st.write(query[1])
                     pages = st.number_input('Страницы', min_value=1, step=1, value=1, format='%d', key=f"make_query_{query[1]}")
-                    google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db(), key=f"select_sheet_{query[1]}")
+                    google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db(), key=f"select_sheet_{query[3]}")
                 with column2:
                     if st.button(f"Произвести поиск", key=f"make_query_{query[0]}"):
                         start = time.time()
