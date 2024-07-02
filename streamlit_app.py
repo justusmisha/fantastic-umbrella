@@ -132,7 +132,7 @@ def profile_home():
                     print(2)
                     google_sheet = ''.join(google_sheet)
                     print(3)
-                    parse_links_by_query(token=TOKEN, query_str=query[1], query_id=query[0], page_numbers=pages)
+                    parse_links_by_query(token=TOKEN, query_str=query[3], query_id=query[0], page_numbers=pages)
                     print(4)
                     create_new_sheet(query[1], google_sheet)
                     print(5)
