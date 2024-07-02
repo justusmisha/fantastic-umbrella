@@ -17,9 +17,9 @@ def parse_links_by_query(token, query_str, query_id, page_numbers, city=None):
             html_soup = BeautifulSoup(response.text, 'html.parser')
             divs_with_class = html_soup.find('div', class_='items-items-kAJAg')
             divs_with_class = divs_with_class.find_all('div', class_='iva-item-root-_lk9K')
-            #
-            # if not divs_with_class:
-            #     break
+
+            if not divs_with_class:
+                break
 
             for tag in divs_with_class:
                 links_from_db = get_links_from_db(query_id)
@@ -51,8 +51,8 @@ def parse_links_by_query(token, query_str, query_id, page_numbers, city=None):
                                      {'data-marker': f'item_list_with_filters/item({item})',
                                       'itemscope': '',
                                       'itemtype': 'http://schema.org/Product'})
-                # if not divs:
-                #     break
+                if not divs:
+                    break
 
                 for div in divs:
                     a_tags = div.find_all('a', itemprop='url')

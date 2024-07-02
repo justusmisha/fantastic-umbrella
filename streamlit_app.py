@@ -118,7 +118,7 @@ async def profile_home():
         change_query_bool_db(link_for_parsing)
 
     for query in queries:
-        if query[3]:
+        if query[2]:
             column1, column2, column3 = st.columns([4, 2, 2])
 
             with column1:

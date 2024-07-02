@@ -64,7 +64,7 @@ class Downloader:
                 .execute()
             )
             print(f"{(result.get('updates').get('updatedCells'))} cells appended.")
-            # return result
+            return result
 
         except HttpError as err:
             print(err)
