@@ -127,13 +127,9 @@ def profile_home():
             with column2:
                 if st.button(f"Произвести поиск", key=f"make_query_{query[0]}"):
                     start = time.time()
-                    print(1)
                     google_sheet = get_google_sheet_db(google_sheet_name)
-                    print(2)
                     google_sheet = ''.join(google_sheet)
-                    print(3)
                     parse_links_by_query(token=TOKEN, query_str=query[3], query_id=query[0], page_numbers=pages)
-                    print(4)
                     create_new_sheet(query[1], google_sheet)
                     print(5)
                     main(query[1], google_sheet, query_id=query[0])
