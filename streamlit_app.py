@@ -4,8 +4,9 @@ import streamlit as st
 
 from card_parser import browser_parser
 from conf import TOKEN, valid_credentials
-from db_base import get_query_db, save_query_db, delete_query_from_db, change_query_bool_db
-from excel_downloader import create_new_sheet
+from db_base import get_query_db, save_query_db, delete_query_from_db, change_query_bool_db, get_google_sheet_names_db, \
+    get_google_sheet_db, save_google_sheet_db
+from excel_downloader import create_new_sheet, create_google_sheet
 from links_parser import parse_links_by_query, get_name_profile
 from main import main
 
