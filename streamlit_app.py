@@ -129,13 +129,11 @@ def profile_home():
                     start = time.time()
                     google_sheet = get_google_sheet_db(google_sheet_name)
                     google_sheet = ''.join(google_sheet)
-                    parse_links_by_query(token=TOKEN, query_str=query[3], query_id=query[0], page_numbers=pages)
-                    create_new_sheet(query[1], google_sheet)
-                    print(5)
-                    main(query[1], google_sheet, query_id=query[0])
-                    print(6)
+                    parse_links_by_query(token="2050db2769964ba9860cd984688191dc382c6a53db9", query_str=query[3],
+                                         query_id=query[0], page_numbers=1)
+                    create_new_sheet(query[1], '1uZMjGpW5m4ZUM7fOrnCwFgi5ArNyLWRLMmjLtT7aMFg')
+                    main(query[1], '1uZMjGpW5m4ZUM7fOrnCwFgi5ArNyLWRLMmjLtT7aMFg', query_id=query[0])
                     end = time.time()
-                    print(7)
                     length = end - start
                     st.success(f"Поиск по '{query[1]}' завершен за {length:.2f} секунд!")
             with column3:
