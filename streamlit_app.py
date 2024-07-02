@@ -1,7 +1,6 @@
 import asyncio
 import time
 import pandas as pd
-import webbrowser
 import streamlit as st
 
 from card_parser import browser_parser
@@ -107,7 +106,7 @@ async def google_sheets():
             st.success(google_sheet_url)
 
 
-async def profile_home():
+def profile_home():
     st.title("Парсинг продавца")
     queries = get_query_db()
     link_for_parsing = st.text_input('Введите ссылку на продавца').strip()
@@ -189,4 +188,5 @@ if __name__ == "__main__":
             else:
                 st.error("Неверное имя пользователя или пароль. Пожалуйста, попробуйте снова.")
     if st.session_state.is_logged_in:
-        asyncio.run(main_page())
+        main_page()
+        
