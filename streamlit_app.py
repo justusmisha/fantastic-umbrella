@@ -19,34 +19,34 @@ def home():
     st.title("Авито Парсер")
     queries = get_query_db()
     cities_data = pd.read_csv('cities.csv', header=None, names=['Russian', 'English'])
+    if queries:
+        for query in queries:
+            if not query[2]:
+                col1, col2, col3, col4 = st.columns([4, 3, 2, 2])
 
-    for query in queries:
-        if not query[2]:
-            col1, col2, col3, col4 = st.columns([4, 3, 2, 2])
-
-            with col1:
-                st.write(query[1])
-                pages = st.number_input('Страницы', min_value=1, step=1, value=1, format='%d', key=f"make_query_{query[1]}")
-            with col2:
-                selected_city_russian = st.selectbox('Выберите город:', cities_data['Russian'], key=f"select_city_{query[1]}")
-                city_translation_map = dict(zip(cities_data['Russian'], cities_data['English']))
-                selected_city_english = city_translation_map[selected_city_russian].replace(" ", "_").lower()
-                google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db(), key=f"select_sheet_{query[1]}")
-            with col3:
-                if st.button(f"Произвести поиск", key=f"make_query_{query[0]}"):
-                    start = time.time()
-                    google_sheet = get_google_sheet_db(google_sheet_name)
-                    google_sheet = ''.join(google_sheet)
-                    parse_links_by_query(token=TOKEN, query_str=query[1], query_id=query[0], page_numbers=pages, city=selected_city_english)
-                    create_new_sheet(query[1], google_sheet)
-                    main(query[1], google_sheet, query_id=query[0])
-                    end = time.time()
-                    length = end - start
-                    st.success(f"Поиск по '{query[1]}' завершен за {length:.2f} секунд!")
-            with col4:
-                if st.button(f"Удалить запрос", key=f"delete_{query[0]}"):
-                    delete_query_from_db(query[0])
-                    st.success(f"Запрос '{query[1]}' удален успешно.")
+                with col1:
+                    st.write(query[1])
+                    pages = st.number_input('Страницы', min_value=1, step=1, value=1, format='%d', key=f"make_query_{query[1]}")
+                with col2:
+                    selected_city_russian = st.selectbox('Выберите город:', cities_data['Russian'], key=f"select_city_{query[1]}")
+                    city_translation_map = dict(zip(cities_data['Russian'], cities_data['English']))
+                    selected_city_english = city_translation_map[selected_city_russian].replace(" ", "_").lower()
+                    google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db(), key=f"select_sheet_{query[1]}")
+                with col3:
+                    if st.button(f"Произвести поиск", key=f"make_query_{query[0]}"):
+                        start = time.time()
+                        google_sheet = get_google_sheet_db(google_sheet_name)
+                        google_sheet = ''.join(google_sheet)
+                        parse_links_by_query(token=TOKEN, query_str=query[1], query_id=query[0], page_numbers=pages, city=selected_city_english)
+                        create_new_sheet(query[1], google_sheet)
+                        main(query[1], google_sheet, query_id=query[0])
+                        end = time.time()
+                        length = end - start
+                        st.success(f"Поиск по '{query[1]}' завершен за {length:.2f} секунд!")
+                with col4:
+                    if st.button(f"Удалить запрос", key=f"delete_{query[0]}"):
+                        delete_query_from_db(query[0])
+                        st.success(f"Запрос '{query[1]}' удален успешно.")
 
     name = st.text_input('Введите ваш запрос для парсинга или ссылку на объявление').strip()
     if st.button("Сохранить"):
@@ -115,31 +115,31 @@ def profile_home():
         name = get_name_profile(browser_parser(link_for_parsing))
         save_query_db(name, url=link_for_parsing)
         change_query_bool_db(link_for_parsing)
+    if queries:
+        for query in queries:
+            if query[2]:
+                column1, column2, column3 = st.columns([4, 2, 2])
 
-    for query in queries:
-        if query[2]:
-            column1, column2, column3 = st.columns([4, 2, 2])
-
-            with column1:
-                st.write(query[1])
-                pages = st.number_input('Страницы', min_value=1, step=1, value=1, format='%d', key=f"make_query_{query[1]}")
-                google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db(), key=f"select_sheet_{query[3]}")
-            with column2:
-                if st.button(f"Произвести поиск", key=f"make_query_{query[0]}"):
-                    start = time.time()
-                    google_sheet = get_google_sheet_db(google_sheet_name)
-                    google_sheet = ''.join(google_sheet)
-                    parse_links_by_query(token=TOKEN, query_str=query[3],
-                                         query_id=query[0], page_numbers=pages)
-                    create_new_sheet(query[1], google_sheet)
-                    main(query[1], google_sheet, query_id=query[0])
-                    end = time.time()
-                    length = end - start
-                    st.success(f"Поиск по '{query[1]}' завершен за {length:.2f} секунд!")
-            with column3:
-                if st.button(f"Удалить запрос", key=f"delete_{query[0]}"):
-                    delete_query_from_db(query[0])
-                    st.success(f"Запрос '{query[1]}' удален успешно.")
+                with column1:
+                    st.write(query[1])
+                    pages = st.number_input('Страницы', min_value=1, step=1, value=1, format='%d', key=f"make_query_{query[1]}")
+                    google_sheet_name = st.selectbox('Выберите гугл документ:', get_google_sheet_names_db(), key=f"select_sheet_{query[3]}")
+                with column2:
+                    if st.button(f"Произвести поиск", key=f"make_query_{query[0]}"):
+                        start = time.time()
+                        google_sheet = get_google_sheet_db(google_sheet_name)
+                        google_sheet = ''.join(google_sheet)
+                        parse_links_by_query(token=TOKEN, query_str=query[3],
+                                             query_id=query[0], page_numbers=pages)
+                        create_new_sheet(query[1], google_sheet)
+                        main(query[1], google_sheet, query_id=query[0])
+                        end = time.time()
+                        length = end - start
+                        st.success(f"Поиск по '{query[1]}' завершен за {length:.2f} секунд!")
+                with column3:
+                    if st.button(f"Удалить запрос", key=f"delete_{query[0]}"):
+                        delete_query_from_db(query[0])
+                        st.success(f"Запрос '{query[1]}' удален успешно.")
 
 
 def contacts():
